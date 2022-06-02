@@ -1,0 +1,44 @@
+
+
+.container{
+    height: 100%;
+    width: 100%;
+}
+.search{
+    display: flex;
+}
+
+.searchInput{
+    
+}
+
+.searchBtn{
+    
+}
+.dataResult{
+    display: block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader{
+    width: 25px;
+    height: 25px;
+    border: 3.5px solid black;
+    border-radius: 50%;
+    border-top: 3.5px solid white;
+    animation: spin 2s linear infinite;
+    position: relative;
+    top: 1vh;
+}
+.noActive{
+    display: none;
+}
+
+.active{
+    display: flex;
+   
+}
