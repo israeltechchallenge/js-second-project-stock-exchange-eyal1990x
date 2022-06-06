@@ -4,6 +4,7 @@ const searchBtn = document.querySelector('.searchBtn');
 
 const resultName = []
 const resultSymbol = []
+
 searchBtn.addEventListener('click',search);
 
 function search() {
@@ -22,6 +23,7 @@ function search() {
     })})
 }
 
+const symbolArray = []
 
 const companyList = (company,symbol) => {
     let display =[]
@@ -31,7 +33,10 @@ const companyList = (company,symbol) => {
         let linkText = document.createTextNode(`${display[i]}`);
         link.appendChild(linkText)
         link.title = (`${display[i]}`);
-        link.href = (`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3//company.html?symbol=${symbol},`)
+        // let querySymbol = new URLSearchParams(`?symbol=${symbol[i]}`)
+        // symbolArray[i] = querySymbol.toString()
+        
+        link.href = (`company.html?symbol=${symbol[i]}`)
         link.classList.add('companyAndSymbol');
         link.innerHTML = (`${display[i]} <br />`)
         document.querySelector('.dataResult').appendChild(link);
@@ -44,8 +49,5 @@ function displayLoader() {
 }
 
 function removeLoader() {
-    setTimeout(() => {
         loader.classList.remove('active');
-    }, 100)
 }
-
