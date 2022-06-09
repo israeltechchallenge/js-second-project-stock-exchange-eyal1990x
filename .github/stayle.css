@@ -19,6 +19,7 @@
     display: block;
 }
 
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -41,4 +42,18 @@
 .active{
     display: flex;
    
+}
+
+.greenPrecentage{
+    color: greenyellow;
+}
+.redPrecentage{
+    color: red;
+}
+.companyImg{
+    height: 3rem;
+    width: 3rem;
+}
+.companyAndSymbol{
+    
 }

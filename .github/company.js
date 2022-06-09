@@ -121,5 +121,8 @@ function displayLoader() {
 }
 
 function removeLoader() {
+    setTimeout(() => {
         loader.classList.remove('active');
+    }, 100);
+        
 }
