@@ -7,31 +7,29 @@ const resultSymbol = []
 const urlArrey = []
 const image = []
 const changesInPercentage = []
+const urlPrice = []
+const price = []
 
-searchBtn.addEventListener('click', search);
 
- function search() {
+
+ const search = async ()=> {
     displayLoader()
-    fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchInput.value}&amp;limit=10&amp;exchange=NASDAQ`)
-        .then(response => {
-            response.json().then(data => {
-                // console.log(data)
+    const response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchInput.value}&amp;limit=10&amp;exchange=NASDAQ`)
+    const data = await response.json();
+                
                 for (let i = 0; i < 10; i++) {
                     resultName[i] = data[i].name
                     resultSymbol[i] = data[i].symbol
                 }
-                companyList(resultName, resultSymbol)
-            
-                })
-        
                 
-            })
-        }
+                companyList(resultName, resultSymbol)
+                
+                }
     
-
+searchBtn.addEventListener('click', search);
  const  companyList = async(company, symbol) => {
     let display = []
-    await imgUrlArrey() 
+    await imgUrlArrey(company) 
     for (let i = 0; i < company.length; i++) {
         let img = document.createElement('img');
         img.src = image[i]
@@ -55,24 +53,26 @@ searchBtn.addEventListener('click', search);
         link.href = (`company.html?symbol=${symbol[i]}`)
         link.classList.add('companyAndSymbol');
         link.innerHTML = (`${display[i]} <br />`)
-        changPrecentage.innerHTML = (`Stock price change in precentage ${changPrecentage[i]}`)
+        changPrecentage.innerHTML = (`Stock price change in precentage ${changPrecentage[i]}%`)
         document.querySelector('.dataResult').appendChild(link);
         document.querySelector('.dataResult').appendChild(changPrecentage);
     }
+    marquee(company)
     removeLoader()
 }
 
 
 
-async function imgUrlArrey() {
+const imgUrlArrey = async (company) => {
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < company.length; i++) {
         urlArrey[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${resultSymbol[i]}`
 
         const response = await fetch(urlArrey[i]);
         const data = await response.json();
-        image[i] = (data.profile.image);
-        changesInPercentage[i] = (data.profile.changesPercentage)
+        console.log(data.profile.image)
+        image[i] = await (data.profile.image);
+        changesInPercentage[i] = await (data.profile.changesPercentage)
     }
     
 }
@@ -86,4 +86,25 @@ function removeLoader() {
     loader.classList.remove('active');
 }
 
+const marquee = async(company) => {
+    for(let j=0; j<3; j++){
+    for (let i = 0; i < company.length; i++){
+    urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${resultSymbol[i]}`
 
+    const response = await fetch(urlPrice[i]);
+    const data = await response.json();
+    price[i] = (data[0].price);
+    let stockSymbol = document.createElement('p')
+    let displayPrice = document.createElement('li')
+    displayPrice[i] = price[i]
+    stockSymbol[i] = resultSymbol[i]
+    displayPrice.classList.add('priceGreen') 
+    stockSymbol.classList.add('stockSymbol')
+    stockSymbol.innerHTML = `${resultSymbol[i]}`
+    displayPrice.innerHTML = `${price[i]}`
+    document.querySelector('.marqueeData').appendChild(stockSymbol)
+    document.querySelector('.marqueeData').appendChild(displayPrice)
+}}
+
+
+}
