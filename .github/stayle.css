@@ -68,6 +68,7 @@
     bottom: 2vh;
 }
 .marquee{
+    display: flex;
     margin: 0;
     width: 100vw;
     overflow: hidden;
