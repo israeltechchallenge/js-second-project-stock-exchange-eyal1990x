@@ -2,16 +2,45 @@
 const marqueeBtn = document.querySelector('.searchBtn');
 const displaySymbol = []
 const displayPrice = []
+const urlPrice = []
+const price = []
 
+// class Marquee{
+//     constructor(){
+//         this.getCreateAndAppend()
+
+//     }
+//     getCreateAndAppend = async() =>{
+
+//     for (let i = 0; i < 10; i++) {
+//         urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${resultSymbol[i]}`
+
+//         const response = await fetch(urlPrice[i]);
+//         const data = await response.json();
+//         console.log(data);
+//         price[i] = (data[0].price);
+
+//         console.log('create');
+//         const stockSymbolAndPrice = document.createElement('p')
+//         stockSymbolAndPrice.classList.add('marqueeClass')
+//         this.stockSymbolAndPrice = stockSymbolAndPrice;
+//         displayMarquee[i] = `${resultSymbol[i]} ${price[i]}`
+//         stockSymbolAndPrice.innerHTML = `${displayMarquee[i]}`
+//         document.querySelector('.marquee').appendChild(stockSymbolAndPrice)
+//     } 
+
+//     }
+
+// }
 class Marquee {
     constructor() {
         this.price
-
+         
     }
     getPrice = async () => {
         // console.log(resultSymbol);
         for (let i = 0; i < 10; i++) {
-            urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${resultSymbol[i]}`
+            urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${companySymbol[i]}`
             // console.log(urlPrice[i]);
 
             const response = await fetch(urlPrice[i]);
@@ -35,10 +64,8 @@ class Marquee {
             const priceList = document.createElement('p')
             priceList.classList.add('priceGreen')
             this.priceList = priceList;
-            displaySymbol[i] = `${resultSymbol[i]}`
-            stockSymbol.innerHTML = `${displaySymbol[i]}`
-            displayPrice[i] = `${price[i]}`
-            priceList.innerHTML =`${displayPrice[i]}` 
+            stockSymbol.innerHTML = `${companySymbol[i]}`  
+            priceList.innerHTML =`${price[i]}` 
             document.querySelector('.marquee').appendChild(stockSymbolAndPrice) 
             document.querySelector('.marqueeData').appendChild(stockSymbol)
             document.querySelector('.marqueeData').appendChild(priceList)
@@ -49,8 +76,10 @@ class Marquee {
 }
 const handleClick = async()=>{
   
-  await search() 
+//   await search() 
+  await newSearch()
   await newMarquee() 
+  await newResultList()
 }
 
     const newMarquee = async() => {
