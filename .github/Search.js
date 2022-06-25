@@ -1,5 +1,6 @@
 const companyName =[]
 const companySymbol = []
+let searchValue = ''
 const searchInput = document.getElementById('search');
 const searchBtn = document.querySelector('.searchBtn');
 
@@ -14,10 +15,18 @@ class Search {
     }
 
     getUrlCompanyData = async () =>{
-        const response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchInput.value}&limit=10&exchange=NASDAQ`)
+        try {
+
+            const response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${searchInput.value}&limit=10&exchange=NASDAQ`)
         const data = await response.json();
         const companyData = data
+        searchValue = `${searchInput.value}`
+        console.log(searchValue);
         this.companyData = companyData
+        } catch (error) {
+            console.log(error);
+        }
+        
         
     }
 

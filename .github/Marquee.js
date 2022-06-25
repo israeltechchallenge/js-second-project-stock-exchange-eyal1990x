@@ -39,17 +39,22 @@ class Marquee {
     }
     getPrice = async () => {
         // console.log(resultSymbol);
-        for (let i = 0; i < 10; i++) {
-            urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${companySymbol[i]}`
-            // console.log(urlPrice[i]);
-
-            const response = await fetch(urlPrice[i]);
-            const data = await response.json();
-            // console.log(data);
-            price[i] = (data[0].price);
-
+        try {
+            for (let i = 0; i < 10; i++) {
+                urlPrice[i] = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quote-short/${companySymbol[i]}`
+                // console.log(urlPrice[i]);
+    
+                const response = await fetch(urlPrice[i]);
+                const data = await response.json();
+                // console.log(data);
+                price[i] = (data[0].price);
+    
+            }
+            this.price = price
+        } catch (error) {
+            console.log(error)
         }
-        this.price = price
+        
 
     }
     createAndDisplay = () => {
@@ -77,9 +82,14 @@ class Marquee {
 const handleClick = async()=>{
   
 //   await search() 
-  await newSearch()
+try {
+    await newSearch()
   await newMarquee() 
   await newResultList()
+} catch (error) {
+    console.log(error);
+}
+  
 }
 
     const newMarquee = async() => {

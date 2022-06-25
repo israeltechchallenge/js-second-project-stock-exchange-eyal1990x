@@ -10,6 +10,8 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2vh;
+    margin-left: 10%;
+    width: 80%;
 }
 
 .searchInput{
@@ -41,7 +43,8 @@
     border-top: 3.5px solid white;
     animation: spin 2s linear infinite;
     position: relative;
-    top: 1vh;
+    
+    margin-left: 2rem;
 }
 .noActive{
     display: none;
