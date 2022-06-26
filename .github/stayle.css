@@ -1,0 +1,104 @@
+
+
+.container{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    
+}
+.search{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.searchInput{
+    margin-right: 1vw;
+    height: 2rem;
+    
+}
+
+.searchBtn{
+    background-color: gold;
+}
+.dataResult{
+    display: block;
+    text-align: left;
+    margin-left: 1vw;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader{
+    width: 25px;
+    height: 25px;
+    border: 3.5px solid black;
+    border-radius: 50%;
+    border-top: 3.5px solid white;
+    animation: spin 2s linear infinite;
+    position: relative;
+    
+    margin-left: 2rem;
+}
+.noActive{
+    display: none;
+}
+
+.active{
+    display: flex;
+   
+}
+
+.greenPrecentage{
+    color: greenyellow;
+}
+.redPrecentage{
+    color: red;
+}
+.companyImg{
+    height: 5vh;
+    width: 5vw;
+    margin-right: 1vw;
+}
+.companyAndSymbol{
+    position: relative;
+    bottom: 2vh;
+}
+.marquee{
+    display: flex;
+    margin: 0;
+    width: 100vw;
+    overflow: hidden;
+}
+.marqueeData{
+    display: flex;
+    list-style-type: none;
+    animation: scrolling 10s linear infinite;
+    height: 100%;
+
+}
+
+@keyframes scrolling{
+    0% {transform: translateX(0vw);}
+    100% {transform: translateX(-180vw);}
+}
+.priceGreen{
+    padding: 1vw;
+    color: greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.stockSymbol{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
